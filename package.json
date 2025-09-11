@@ -19,8 +19,9 @@
   },
   "dependencies": {
     "@contentstack/delivery-sdk": "^4.8.0",
-    "@contentstack/live-preview-utils": "^3.4.0",
+    "@contentstack/live-preview-utils": "^4.0.1",
     "@timbenniks/contentstack-endpoints": "^1.0.14",
+    "contentstack": "^3.26.2",
     "dompurify": "^3.2.6",
     "next": "15.4.6",
     "react": "^19.1.1",

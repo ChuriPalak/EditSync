@@ -1,0 +1,28 @@
+/* add Tailwind base styles, components, and utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  body {
+    background: #e9e9e9;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+  html 
+  {
+    scroll-behavior: smooth;
+  }
+
+}
