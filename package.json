@@ -24,6 +24,7 @@
     "contentstack": "^3.26.2",
     "dompurify": "^3.2.6",
     "next": "15.4.6",
+    "next-auth": "^4.24.11",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
