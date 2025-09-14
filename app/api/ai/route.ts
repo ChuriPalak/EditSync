@@ -37,27 +37,21 @@ export async function POST(req: NextRequest) {
       case "Grammar Checker":
         prompt = `Correct grammar, spelling, and clarity. Text: ${text}`;
         break;
-
       case "Plagiarism Check":
         prompt = `Check if the following text appears plagiarized, and return a similarity estimate and suggestions. Text: ${text}`;
         break;
-
       case "Contextual Replacement":
-        prompt = `Perform contextual replacement only. Example: Replace “Gemini 2.5 Pro” with “Claude Sonnet”, not Claude 2.5 Pro. Text: ${text}`;
+        prompt = `Replace "${findText}" with "${replaceText}" in the following text. Perform contextual replacement only. Example: Replace “Gemini 2.5 Pro” with “Claude Sonnet”, not Claude 2.5 Pro. Text: ${text}`;
         break;
-
       case "Smart Link Updates":
-        prompt = `Update links in text. Example: "Google" linking to https://google.com → "Bing" linking to https://bing.com. Text: ${text}`;
+        prompt = `Update links in text. Replace "${findText}" with "${replaceText}". Only replace if the new link exists. Text: ${text}`;
         break;
-
       case "Named Entity Replacement":
-        prompt = `Replace company names, people, and emails with new provided ones. Text: ${text}`;
+        prompt = `Replace entities as per this map: ${entityMap}. Text: ${text}`;
         break;
-
       case "Deep Content Management":
         prompt = `Scan and edit Rich Text, tables, nested components, links, metadata, and custom fields. Text: ${text}`;
         break;
-
       case "AI Chatbot":
         prompt = `Answer conversationally, but stay within writing/editing/content management context. Text: ${text}`;
         break;
@@ -77,41 +71,3 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ result: "Error processing request" });
   }
 }
-
-import NextAuth from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-
-const handler = NextAuth({
-  providers: [
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials) {
-        // ⚡ Replace with real DB check
-        if (
-          credentials?.email === "test@editsync.com" &&
-          credentials?.password === "1234"
-        ) {
-          return {
-            id: "1",
-            name: "Test User",
-            email: credentials.email,
-          };
-        }
-        return null;
-      },
-    }),
-  ],
-  pages: {
-    signIn: "/login", // your login.tsx UI
-  },
-  session: {
-    strategy: "jwt",
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-});
-
-export { handler as GET, handler as POST };
